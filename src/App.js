@@ -4,8 +4,7 @@ import AddForm from './AddForm';
 class App extends Component {
   state = {
     todos: [
-      { id: 1, content: 'buy milk!' },
-      { id: 2, content: 'apply for frankfort! ;)' },
+    
     ]
   }
   deleteTodo = (id) => {
@@ -17,7 +16,7 @@ class App extends Component {
     });
   }
   addTodo = (todo) => {
-    todo.id = this.state.todos[this.state.todos.length -1].id + 1;
+    todo.id = this.state.todos.length !== 0 ? (this.state.todos[this.state.todos.length -1].id + 1) : (1);
     const newTodos = [...this.state.todos , todo];
     this.setState({
       todos: newTodos
@@ -26,7 +25,7 @@ class App extends Component {
   render() {
     return (
       <div className="App container">
-        <h1 className="center blue-text">Todos</h1>
+        <h1 className="center indigo-text">Todos</h1>
         <Todos todos={this.state.todos} deleteTodo={this.deleteTodo}/>
         <AddForm addTodo={this.addTodo}/>
       </div>
